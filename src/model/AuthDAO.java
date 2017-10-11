@@ -268,7 +268,9 @@ public class AuthDAO {
 			dbusername = rs.getString("UNAME");
 			dbpassword = rs.getString("PASS");
 			dbrole = rs.getString("ROLE");
-			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword) && role.equalsIgnoreCase(dbrole)) {
+			System.out.println("result: " + dbusername + dbpassword + dbrole);
+			//if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword) && role.equalsIgnoreCase(dbrole)) {
+			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword)) {
 				return dbrole;
 			}
 		}

@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBconnection {
+public class DBconnectTest {
 
-	public static Connection createConnection() {	
-		
-		Connection con = null;
-		
-		//String url = "jdbc:mysql://localhost:3306/ecommerce"; //teamdb is database name
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		//conn = DBconnection.createConnection();
 		String url = "jdbc:mysql://localhost/ecommerce";
 		String username = "root"; //MySQL username
 		String password = "root";
@@ -26,12 +25,18 @@ public class DBconnection {
 		{
 		e.printStackTrace();
 		}
-		con = DriverManager.getConnection(url, username, password); //attempting to connect to MySQL database
+		conn = DriverManager.getConnection(url, username, password); //attempting to connect to MySQL database
 		} 
 		catch (SQLException e) 
 		{
 		e.printStackTrace();
 		}
-		return con; 
+		if(conn == null){
+			System.out.println("connection to DB failed.");
+		}
+		else{
+			System.out.println("connection to DB succeed!");
 		}
 	}
+
+}

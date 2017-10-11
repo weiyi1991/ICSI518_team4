@@ -2,7 +2,7 @@ CREATE TABLE USER
 (  
 UID INT NOT NULL auto_increment,  
 UNAME VARCHAR(12) NOT NULL unique,    
-PASS INT NOT NULL,  
+PASS VARCHAR(12) NOT NULL,  
 ROLE VARCHAR(10) NOT NULL,  
 PRIMARY KEY(UID)  
 ); 
@@ -31,3 +31,6 @@ PHOTO mediumblob,
 PRIMARY KEY (PID),
 foreign key (UID) references USER(UID)
 ); 
+
+INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('user1', '123', 'Customer');
+INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('admin', '123', 'Admin');
