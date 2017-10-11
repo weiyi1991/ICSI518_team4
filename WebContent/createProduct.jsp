@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<jsp:include page="_header.jsp"></jsp:include>
+	<jsp:include page="_nav.jsp"></jsp:include>
 
 	<!-- If not login, can't sell -->
 	<% 
@@ -20,33 +20,55 @@
 	
 	<!-- selling form -->
 	
-	
-	 <h3>Create Product</h3>
+	<div class="container">
+  <center><h2>Create Product</h2></center>
+  <br>
+   <p style="color: red;">${errorString}</p>
+  <form class="form-horizontal" action="createProduct" method="Post">
        
-      <p style="color: red;">${errorString}</p>
-       
-      <form method="POST" action="createProduct">
-         <table border="0">
-            <tr>
-               <td>Name</td>
-               <td><input type="text" name="name" /></td>
-            </tr>
-            <tr>
-               <td>Description</td>
-               <td><textarea name="description"></textarea></td>
-            </tr>
-            <tr>
-               <td>Price</td>
-               <td><input type="text" name="price" /></td>
-            </tr>
-            <tr>
-               <td colspan="2">                   
-                   <input type="submit" value="Submit" />
-                
-               </td>
-            </tr>
-         </table>
-      </form>
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Product Name:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="pname" placeholder="" name="pname">
+      </div>
+    </div>
+  	<div class="form-group">
+      <label class="control-label col-sm-2" >Description:</label>
+      <div class="col-sm-8">
+        <textarea class="form-control" id="desp" rows="3" name="desp"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Price:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="price" placeholder="" name="price">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Category:</label>
+      <div class="col-sm-8">          
+        <select class="form-control" name="category">
+	      		<option>Electronics</option>
+	      		<option>Fine Arts</option>
+	      		<option>Furnitures</option>
+	      		<option>Books</option>
+	      		<option>Cars</option>
+    	</select>
+    	</div>
+    </div>
+    <div class="form-group">
+    	<label class="control-label col-sm-2" for="inputfile">Photo:</label>
+    	<div class="col-sm-8">
+    		<input type="file" id="photo" name="photo">
+    	</div>
+  	</div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+    
+  </form>
 
 </body>
 </html>
