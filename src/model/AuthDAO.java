@@ -42,27 +42,27 @@ public class AuthDAO {
 		try
 		{
 		con = DBconnection.createConnection();
-		String query = "select * from user where userId=?"; 
+		String query = "SELECT * FROM user WHERE UID=?"; 
 		
 		ps = (PreparedStatement) con.prepareStatement(query);
 		ps.setInt(1, userId);
 		rs = ps.executeQuery();
 		
 		while(rs.next()) {
-			dbusername = rs.getString("username");
-			dbpassword = rs.getString("password");
-			dbrole = rs.getString("role");
+			dbusername = rs.getString("UNAME");
+			dbpassword = rs.getString("PASS");
+			dbrole = rs.getString("ROLE");
 		}
 		
 		con1 = DBconnection.createConnection();
-		String query1 = "select * from user_profile where userId=?"; 
+		String query1 = "SELECT * FROM user_profile WHERE UID=?"; 
 		ps1 = (PreparedStatement) con1.prepareStatement(query1);
 		ps1.setInt(1, userId);
 		rs1 = ps1.executeQuery();
 		
 		while(rs1.next()) {
-			dbfname = rs1.getString("firstName");
-			dblname = rs1.getString("lastName");
+			dbfname = rs1.getString("FNAME");
+			dblname = rs1.getString("LNAME");
 			}
 		
 		user.setUserFirstName(dbfname);	
@@ -93,15 +93,15 @@ public class AuthDAO {
 		try
 			{
 			con = DBconnection.createConnection();
-			String query = "select username,password,role from user"; 
+			String query = "SELECT UNAME,PASS,ROLE FROM user"; 
 			
 			ps = (PreparedStatement) con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				dbusername = rs.getString("username");
-				dbpassword = rs.getString("password");
-				dbrole = rs.getString("role");
+				dbusername = rs.getString("UNAME");
+				dbpassword = rs.getString("PASS");
+				dbrole = rs.getString("ROLE");
 				if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword) && role.equalsIgnoreCase(dbrole)) {
 					return 1;
 				}
@@ -119,16 +119,16 @@ public class AuthDAO {
 	public static boolean checkUserNameAvailable (String username) {
 
 		Connection con = null;	
-		PreparedStatement pstm = null;
+		PreparedStatement ps = null;
 		
 		try	{		
 			
 			con = DBconnection.createConnection();
-			String query = "SELECT username FROM user where username=?"; 
-			pstm = (PreparedStatement) con.prepareStatement(query);
+			String query = "SELECT UNAME FROM user where UNAME=?"; 
+			ps = (PreparedStatement) con.prepareStatement(query);
 
-			pstm.setString(1, username);
-			ResultSet rs = pstm.executeQuery();
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
 		
 			if(rs.next()) {
 				
@@ -147,18 +147,18 @@ public class AuthDAO {
 	public static boolean enterNewUser(String username, String password, String role) {
 		
 		Connection con = null;	
-		PreparedStatement pstm = null;
+		PreparedStatement ps = null;
 		
 		try	{
 			con = DBconnection.createConnection();
-			String query = "insert into user (username,password,role) values (?,?,?)"; 
-			pstm = (PreparedStatement) con.prepareStatement(query); 
-			pstm.setString(1, username);
-			pstm.setString(2, password);
-			pstm.setString(3, role);
+			String query = "INSERT INTO user (UNAME,PASS,ROLE) values (?,?,?)"; 
+			ps = (PreparedStatement) con.prepareStatement(query); 
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ps.setString(3, role);
 		
 		
-			int i= pstm.executeUpdate();
+			int i= ps.executeUpdate();
 		
 			if (i!=0)
 				return true;
@@ -172,13 +172,13 @@ public class AuthDAO {
 	}
 	
 	public static boolean enterNewUserProfile(String username, String firstname, String lastname) {
-	
+		//wrong
 		Connection con = null;	
 		PreparedStatement ps = null;
 		
 		try	{
 			con = DBconnection.createConnection();
-			String query = "insert into user_profile (firstName,lastName) values (?,?)"; 
+			String query = "INSERT INTO user_profile (FNAME,LNAME) values (?,?)"; 
 			ps = (PreparedStatement) con.prepareStatement(query); 
 			ps.setString(1, firstname);
 			ps.setString(2, lastname);
@@ -220,7 +220,7 @@ public class AuthDAO {
 			return "Username already exists.";
 		
 		con1 = DBconnection.createConnection();
-		String query1 = "insert into user(userId,username,password,role) values (Null,?,?,?)"; 
+		String query1 = "INSERT INTO user(UID,UNAME,PASS,ROLE) values (NULL,?,?,?)"; 
 		ps1 = (PreparedStatement) con1.prepareStatement(query1); 
 		ps1.setString(1, username);
 		ps1.setString(2, password);
@@ -229,7 +229,7 @@ public class AuthDAO {
 	
 		if (i1!=0) {
 			con2 = DBconnection.createConnection();
-			String query2 = "insert into user_profile(firstName,lastName) values (?,?)"; 
+			String query2 = "INSERT INTO user_profile(UID,FNAME,LNAME) values (NULL,?,?)"; 
 			ps2 = (PreparedStatement) con2.prepareStatement(query2); 
 			ps2.setString(1, fname);
 			ps2.setString(2, lname);
@@ -259,15 +259,15 @@ public class AuthDAO {
 	try
 		{
 		con = DBconnection.createConnection();
-		String query = "select username,password,role from user"; 
+		String query = "SELECT UNAME,PASS,ROLE from user"; 
 		
 		ps = (PreparedStatement) con.prepareStatement(query);
 		rs = ps.executeQuery();
 		
 		while(rs.next()) {
-			dbusername = rs.getString("username");
-			dbpassword = rs.getString("password");
-			dbrole = rs.getString("role");
+			dbusername = rs.getString("UNAME");
+			dbpassword = rs.getString("PASS");
+			dbrole = rs.getString("ROLE");
 			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword) && role.equalsIgnoreCase(dbrole)) {
 				return dbrole;
 			}
@@ -304,29 +304,29 @@ public class AuthDAO {
 		try
 		{
 		con = DBconnection.createConnection();
-		String query = "select * from user where username=?"; 
+		String query = "SELECT * FROM user WHERE UNAME=?"; 
 		
 		ps = (PreparedStatement) con.prepareStatement(query);
 		ps.setString(1, username);
 		rs = ps.executeQuery();
 		
 		while(rs.next()) {
-			dbusername = rs.getString("username");
-			dbpassword = rs.getString("password");
-			dbrole = rs.getString("role");
-			dbuserId = rs.getInt("userId");
+			dbusername = rs.getString("UNAME");
+			dbpassword = rs.getString("PASS");
+			dbrole = rs.getString("ROLE");
+			dbuserId = rs.getInt("UID");
 		}
 		
 		//System.out.println("id" + dbuserId);
 		con1 = DBconnection.createConnection();
-		String query1 = "select * from user_profile where userId=?"; 
+		String query1 = "SELECT * FROM user_profile WHERE UID=?"; 
 		ps1 = (PreparedStatement) con1.prepareStatement(query1);
 		ps1.setInt(1, dbuserId);
 		rs1 = ps1.executeQuery();
 		
 		while(rs1.next()) {
-			dbfname = rs1.getString("firstName");
-			dblname = rs1.getString("lastName");
+			dbfname = rs1.getString("FNAME");
+			dblname = rs1.getString("LNAME");
 			}
 		
 		user.setUserFirstName(dbfname);	
@@ -355,14 +355,14 @@ public class AuthDAO {
 		try {
 			
 			con = DBconnection.createConnection();
-	    	String query = "insert into Product(productName,productDescriptin,productPrice,productSeller,productAddress) values (?,?,?,?,?)";
+	    	String query = "INSERT INTO Product(PID,PNAME,CATEGORY,PRICE,UID,DESP) values (NULL,?,?,?,?,?)";
 			ps = (PreparedStatement) con.prepareStatement(query);
 			
 	        ps.setString(1, product.getName());
-	        ps.setString(2, product.getDescription());
-	        ps.setInt(3, product.getPrice());
-	        ps.setString(4, product.getSeller());
-	        ps.setString(5, product.getAddress());
+	        ps.setString(2, product.getCategory());
+            ps.setInt(3, product.getPrice());
+	        ps.setInt(4, product.getSellerID());
+	        ps.setString(5, product.getDescription());
 	        
 	       	int i  = ps.executeUpdate();
 	       	

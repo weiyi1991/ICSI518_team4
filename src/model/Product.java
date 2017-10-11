@@ -7,7 +7,7 @@ public class Product {
 	   private int productId;
 	   private String category;
 	   private int price;
-	   private String seller;
+	   private int sellerID;
 	   private String address;
 	 
 	   public Product() {  
@@ -45,12 +45,12 @@ public class Product {
 	       this.price = price;
 	   }
 	  
-	   public String getSeller() {
-	       return seller;
+	   public int getSellerID() {
+	       return sellerID;
 	   }
 	 
-	   public void setSeller(String seller) {
-	       this.seller = seller;
+	   public void setSellerID(int sellerID) {
+	       this.sellerID = sellerID;
 	   }
 	   
 	   public String getAddress() {
@@ -59,6 +59,14 @@ public class Product {
 	 
 	   public void setAddress(String address) {
 	       this.address = address;
+	   }
+	   
+	   public String getCategory() {
+	       return category;
+	   }
+	 
+	   public void setCategory(String category) {
+	       this.category = category;
 	   }
 	   
 	   

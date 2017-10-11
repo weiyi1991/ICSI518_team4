@@ -8,11 +8,10 @@
 </head>
 <body>
      <jsp:include page="_nav.jsp"></jsp:include>
-     
-     <h3>Home Page</h3>
-     
+       
      <ul>
          <li>Product list</li>
+         
          <li>Create product</li>
      </ul>
 </body>
