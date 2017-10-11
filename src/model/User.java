@@ -62,5 +62,24 @@ public class User {
 	   public void setUserId(int userId) {
 	       this.userId = userId;
 	   }
+	   
+	   public String getUserAddress() {
+	       return address;
+	   }
+	   
+	   public void setUserAddress(String address) {
+	       this.address = address;
+	   }
+	   
+	   public String getUserEmail() {
+	       return email;
+	   }
+	   
+	   public void setUserEmail(String email) {
+	       this.email = email;
+	   }
+	   
+	   
+	   
 	 
 	}

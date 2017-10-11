@@ -1,11 +1,7 @@
 package controll;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mysql.jdbc.PreparedStatement;
 
 import model.AuthDAO;
-import model.User;
 import model.User;
 
 @WebServlet("/login")
@@ -74,6 +68,8 @@ public class login extends HttpServlet {
 					session.setAttribute("role", role);
 					session.setAttribute("firstname", login_user.getUserFirstName());
 					session.setAttribute("lastname", login_user.getUserLastName());
+					session.setAttribute("address", login_user.getUserAddress());
+					
 					
 					request.setAttribute("username", username);
 					request.setAttribute("role", role);
@@ -97,7 +93,7 @@ public class login extends HttpServlet {
 				
 
 				else {
-					//request.setAttribute("errMessage", userValidate);
+					request.setAttribute("errMessage", userValidate);
 					request.getRequestDispatcher("error.jsp").forward(request, response);
 					
 				}
