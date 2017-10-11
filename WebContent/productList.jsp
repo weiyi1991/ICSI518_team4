@@ -35,15 +35,15 @@ th, td {
        <tr>
 		  <th>Name</th>
           <th>Description</th>
-          <th>Price</th>
-          <th>Username</th>
+          <th>Price ($)</th>
+          <th></th>
        </tr>
        <c:forEach items="${productList}" var="product" >
           <tr>
           	<td>${product.name}</td>
             <td>${product.description}</td>
             <td>${product.price}</td>
-            <td>${product.sellerID}</td>
+            <td><a href=>Buy</a></td>
           </tr>
       	 </c:forEach>
    		</table>
