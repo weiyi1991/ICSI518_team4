@@ -32,13 +32,11 @@ function validate() {
    	<%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-    response.setDateHeader("Expires", 0); // Proxies. 
-    
-    
+    response.setDateHeader("Expires", 0); // Proxies.     
     
 	%>
     
-<jsp:include page="_header.jsp"></jsp:include>
+<jsp:include page="_nav.jsp"></jsp:include>
 
 
 
@@ -69,11 +67,6 @@ function validate() {
 
 </form>
 
-<ul class="list">
-   <li><a href="home.jsp">Home</a></li>
-   <li><a href="login.jsp">Login</a></li>
-   <li><a href="signup.jsp">Sign Up</a> 
-</ul>
 
 
 </body>

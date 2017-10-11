@@ -11,7 +11,8 @@ function validate() {
 	var lname = document.forms["form"]["lastname"].value;
     var uname = document.forms["form"]["username"].value;
     var pass = document.forms["form"]["pass"].value;
-    if (fname == "" && lname == "" && uname == "" && pass == "") {
+    var email = document.forms["form"]["email"].value;
+    if (fname == "" && lname == "" && uname == "" && pass == "" && email == "") {
         alert("Please enter information.");
         return false;
     } 
@@ -31,6 +32,10 @@ function validate() {
         alert("Please enter password.");
         return false;
     }
+    else if (email == "") {
+        alert("Please enter E-mail.");
+        return false;
+    }
 }
 </script>
 
@@ -38,7 +43,7 @@ function validate() {
 
 </head>
 <body>
-
+<jsp:include page="_nav.jsp"></jsp:include>
 <form class = "form" name = "form" action="signup" method="post" onsubmit="return validate()">
 
 	<div class="form-title-row">
@@ -72,6 +77,13 @@ function validate() {
         	<input type="password" name="pass">
         </label>
     </div>
+    
+    <div class="form-row">
+    	<label>
+       		<span>E-mail</span>
+        	<input type="text" name="email">
+        </label>
+    </div>
 
     <div class="form-row">
     	<button type="submit">Sign Up</button>
@@ -86,11 +98,6 @@ function validate() {
 
 </form>
 
-<ul class="list">
-   <li><a href="home.jsp">Home</a></li>
-   <li><a href="login.jsp">Login</a></li>
-   <li><a href="signup.jsp">Sign Up</a> 
-</ul>
 
 </body>
 </html>
