@@ -10,8 +10,16 @@
      <jsp:include page="_nav.jsp"></jsp:include>
        
      <ul>
-         <li><a href="productList.jsp">Product list</a></li>
-         <li><a href="createProduct.jsp">Create product</a></li>
+        <li>		
+        	<form action="productList" method="post">
+  		 		<input type="submit" value="Product List" />
+       	 	</form>
+       	</li>
+        <li>
+         	<form action="createProduct.jsp">
+   			 	<input type="submit" value="Create Product" />
+			</form>
+		</li>
      </ul>
 </body>
 </html>

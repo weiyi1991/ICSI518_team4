@@ -9,11 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.AuthDAO;
 import model.Product;
 
-/**
- * Servlet implementation class productList
- */
 @WebServlet("/productList")
 public class productList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,15 +26,19 @@ public class productList extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 List<Product> list = null;
-		 
+	
 		 
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		 List<Product> list = null;
+		 AuthDAO dao = new AuthDAO();
+		 list = dao.queryProduct();
+		   
+	     request.setAttribute("productList", list);
+	         
+	     request.getRequestDispatcher("productList.jsp").forward(request, response);
 	}
 
 }

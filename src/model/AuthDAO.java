@@ -400,12 +400,12 @@ public class AuthDAO {
     	try
 		{
 		con = DBconnection.createConnection();
-		String query = "SELECT * from product"; 
+		String query = "SELECT * FROM product"; 
 		ps = (PreparedStatement) con.prepareStatement(query);
 		rs = ps.executeQuery();
 		
 		while(rs.next()) {
-            String name = rs.getString("NAME");
+            String name = rs.getString("PNAME");
             String desp = rs.getString("DESP");
             int price = rs.getInt("PRICE");
             int sellerID = rs.getInt("UID");

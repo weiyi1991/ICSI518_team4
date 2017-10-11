@@ -39,7 +39,7 @@ function validate() {
 	<!-- If not login, can't sell -->
 	<% 
     if(session.getAttribute("user")==null){
-    	//response.sendRedirect("login.jsp");    	
+    	response.sendRedirect("login.jsp");    	
     }
     
 	%>
