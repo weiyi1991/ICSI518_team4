@@ -37,4 +37,29 @@ public class Product {
 	       this.productId = productId;
 	   }
 	 
+	   public int getPrice() {
+	       return price;
+	   }
+	 
+	   public void setPrice(int price) {
+	       this.price = price;
+	   }
+	  
+	   public String getSeller() {
+	       return seller;
+	   }
+	 
+	   public void setSeller(String seller) {
+	       this.seller = seller;
+	   }
+	   
+	   public String getAddress() {
+	       return address;
+	   }
+	 
+	   public void setAddress(String address) {
+	       this.address = address;
+	   }
+	   
+	   
 	}

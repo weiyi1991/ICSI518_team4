@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import com.mysql.jdbc.PreparedStatement;
 
 import model.User;
+import model.Product;
 import util.DBconnection;
 
 public class AuthDAO {
@@ -345,6 +346,37 @@ public class AuthDAO {
 		return user;
 	
 	}
+	
+    public String createProduct(Product product) {
+        
+    	Connection con = null;
+    	PreparedStatement ps;
+        
+		try {
+			
+			con = DBconnection.createConnection();
+	    	String query = "insert into Product(productName,productDescriptin,productPrice,productSeller,productAddress) values (?,?,?,?,?)";
+			ps = (PreparedStatement) con.prepareStatement(query);
+			
+	        ps.setString(1, product.getName());
+	        ps.setString(2, product.getDescription());
+	        ps.setInt(3, product.getPrice());
+	        ps.setString(4, product.getSeller());
+	        ps.setString(5, product.getAddress());
+	        
+	       	int i  = ps.executeUpdate();
+	       	
+	       	if(i!=0) {
+	       		return "SUCCESS";
+	       	}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+      
+        return "FAILURE";
+    }
 
 }
 
