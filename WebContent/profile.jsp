@@ -13,7 +13,7 @@
 <div class="container">
   <center><h2>Update Profile</h2></center>
   <br>
-  <form class="form-horizontal" action="/action_page.php">
+  <form class="form-horizontal" action="profile_update" method="Post">
   	<div class="form-group">
       <label class="control-label col-sm-2" >User Name:</label>
       <div class="col-sm-8">
@@ -41,7 +41,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-8">
-        <input type="email" class="form-control" id="email" placeholder="" name="email">
+        <input type="email" class="form-control" id="email" placeholder="" name="email" disabled>
       </div>
     </div>
     <div class="form-group">
@@ -59,6 +59,7 @@
 	      		<option>Troy</option>
 	      		<option>New York City</option>
     	</select>
+    	</div>
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-8">

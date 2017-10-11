@@ -20,7 +20,7 @@
     <servlet-name>signup</servlet-name>
     <url-pattern>/signupservlet</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>logout</servlet-name>
     <servlet-class>controll.logout</servlet-class>
   </servlet>

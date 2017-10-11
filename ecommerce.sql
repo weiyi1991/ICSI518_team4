@@ -31,3 +31,6 @@ PHOTO mediumblob,
 PRIMARY KEY (PID),
 foreign key (UID) references USER(UID)
 ); 
+
+INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('user1', '123', 'Customer');
+INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('admin', '123', 'Admin');

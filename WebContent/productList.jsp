@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<jsp:include page="_header.jsp"></jsp:include>
+	<jsp:include page="_nav.jsp"></jsp:include>
 
 	
 	<!-- product lists -->

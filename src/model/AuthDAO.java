@@ -4,6 +4,9 @@ import java.sql.Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mysql.jdbc.PreparedStatement;
 
 import model.User;
@@ -270,6 +273,7 @@ public class AuthDAO {
 			dbusername = rs.getString("UNAME");
 			dbpassword = rs.getString("PASS");
 			dbrole = rs.getString("ROLE");
+			System.out.println("result: " + dbusername + dbpassword + dbrole);
 			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword)) {
 				return dbrole;
 			}
@@ -386,6 +390,45 @@ public class AuthDAO {
         return "FAILURE";
     }
 
+    public List<Product> queryProduct(){
+    	Connection con = null;
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+    	List<Product> list = new ArrayList<Product>();
+    	
+    	try
+		{
+		con = DBconnection.createConnection();
+		String query = "SELECT * from product"; 
+		ps = (PreparedStatement) con.prepareStatement(query);
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+            String name = rs.getString("NAME");
+            String desp = rs.getString("DESP");
+            int price = rs.getInt("PRICE");
+            int sellerID = rs.getInt("UID");
+            
+            Product product = new Product();
+
+            product.setName(name);
+            product.setDescription(desp);
+            product.setPrice(price);
+            product.setSellerID(sellerID);
+            
+            
+            list.add(product);
+			}
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+    	
+    	return list;
+    }
 }
 
 
