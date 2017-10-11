@@ -10,9 +10,8 @@
      <jsp:include page="_nav.jsp"></jsp:include>
        
      <ul>
-         <li>Product list</li>
-         
-         <li>Create product</li>
+         <li><a href="productList.jsp">Product list</a></li>
+         <li><a href="createProduct.jsp">Create product</a></li>
      </ul>
 </body>
 </html>

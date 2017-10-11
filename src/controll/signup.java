@@ -26,15 +26,18 @@ public class signup extends HttpServlet {
 		String lname = request.getParameter("lastname");
 		String uname = request.getParameter("username");
 		String pass = request.getParameter("pass");
+		String email = request.getParameter("email");
+		
 	
 		
 		User signupUser = new User();
 		
-		signupUser.setUserFirstName(fname);	
-		signupUser.setUserLastName(lname);
+		signupUser.setFirstName(fname);	
+		signupUser.setLastName(lname);
 		signupUser.setUserName(uname);
 		signupUser.setPassword(pass);
 		signupUser.setRole("Customer");
+		signupUser.setEmail(email);
 		
 		AuthDAO signup = new AuthDAO();
 		

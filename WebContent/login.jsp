@@ -64,6 +64,12 @@ function validate() {
     	<button type="submit">Log In</button>
     </div>
 
+    <div class="form-row">
+    	<label>
+       		<span><%=(request.getAttribute("errMessage") == null) ? ""
+					: request.getAttribute("errMessage")%></span>
+         </label>
+    </div>
 
 </form>
 

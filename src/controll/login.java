@@ -35,7 +35,7 @@ public class login extends HttpServlet {
 		
 			String username = request.getParameter("username");
 			String password = request.getParameter("pass");
-			String role = request.getParameter("role");
+			//String role = request.getParameter("role");
 			//String fname = "";
 			//String lname = "";
 						
@@ -44,7 +44,7 @@ public class login extends HttpServlet {
 			
 			user.setUserName(username);
 			user.setPassword(password);
-			user.setRole(role);
+			//user.setRole(role);
 			
 			AuthDAO login = new AuthDAO();
 
@@ -56,7 +56,7 @@ public class login extends HttpServlet {
 			//System.out.println("f" + login_user.getUserFirstName());
 			//System.out.println("l" + login_user.getUserLastName());
 			
-			if(userValidate.equals("Customer")){
+			if(userValidate.equalsIgnoreCase("Customer")){
 									
 					HttpSession session = request.getSession(); //Creating a session
 					
@@ -65,36 +65,36 @@ public class login extends HttpServlet {
 					System.out.println("log in session:" + session.getAttribute("user"));
 						
 					session.setAttribute("username", username);
-					session.setAttribute("role", role);
-					session.setAttribute("firstname", login_user.getUserFirstName());
-					session.setAttribute("lastname", login_user.getUserLastName());
-					session.setAttribute("address", login_user.getUserAddress());
+					//session.setAttribute("role", role);
+					session.setAttribute("firstname", login_user.getFirstName());
+					session.setAttribute("lastname", login_user.getLastName());
+					session.setAttribute("address", login_user.getAddress());
 					
 					
 					request.setAttribute("username", username);
-					request.setAttribute("role", role);
-					request.setAttribute("firstname", login_user.getUserFirstName());
-					request.setAttribute("lastname", login_user.getUserLastName());
+					//request.setAttribute("role", role);
+					request.setAttribute("firstname", login_user.getFirstName());
+					request.setAttribute("lastname", login_user.getLastName());
 					
-					request.getRequestDispatcher("customer.jsp").forward(request, response);
+					request.getRequestDispatcher("homeLogin.jsp").forward(request, response);
 				}	
 				
-				else if(userValidate.equals("Admin")){
+				else if(userValidate.equalsIgnoreCase("Admin")){
 					HttpSession session = request.getSession(); //Creating a session
-					session.setAttribute("role", role); 
+					//session.setAttribute("role", role); 
 					
 					request.setAttribute("username", username);
-					request.setAttribute("role", role);
-					request.setAttribute("firstname", login_user.getUserFirstName());
-					request.setAttribute("lastname", login_user.getUserLastName());
+					//request.setAttribute("role", role);
+					request.setAttribute("firstname", login_user.getFirstName());
+					request.setAttribute("lastname", login_user.getLastName());
 					
-					request.getRequestDispatcher("admin.jsp").forward(request, response);
+					request.getRequestDispatcher("homeLogin.jsp").forward(request, response);
 				}	
 				
 
 				else {
 					request.setAttribute("errMessage", userValidate);
-					request.getRequestDispatcher("error.jsp").forward(request, response);
+					request.getRequestDispatcher("login.jsp").forward(request, response);
 					
 				}
 				}

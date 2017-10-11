@@ -9,13 +9,11 @@
       <a class="navbar-brand" href="#">E-Commerce</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home.jsp">Home</a></li>
+      <li class="active"><a href="homeLogin.jsp">Home</a></li>
       <li><a href="profile.jsp">Profile</a></li>
       <li><a href="#">Post</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="signup.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>

@@ -10,7 +10,7 @@ public class DBconnection {
 		
 		Connection con = null;
 		
-		String url = "jdbc:mysql://localhost:3306/ecommerce"; //teamdb is database name
+		String url = "jdbc:mysql://localhost:3306/ecommerce"; //ecommerce is database name
 		String username = "root"; //MySQL username
 		String password = "tnat410"; //MySQL password
 		

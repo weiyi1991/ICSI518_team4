@@ -65,8 +65,8 @@ public class AuthDAO {
 			dblname = rs1.getString("LNAME");
 			}
 		
-		user.setUserFirstName(dbfname);	
-		user.setUserLastName(dblname);
+		user.setFirstName(dbfname);	
+		user.setLastName(dblname);
 		user.setUserName(dbusername);
 		user.setPassword(dbpassword);
 		user.setRole(dbrole);
@@ -202,8 +202,9 @@ public class AuthDAO {
 	String username = user.getUserName();
 	String password = user.getPassword();
 	String role = user.getRole();
-	String fname = user.getUserFirstName();
-	String lname = user.getUserLastName();
+	String fname = user.getFirstName();
+	String lname = user.getLastName();
+	String email = user.getEmail();
 	
 	Connection con1 = null;
 	Connection con2 = null;
@@ -229,10 +230,11 @@ public class AuthDAO {
 	
 		if (i1!=0) {
 			con2 = DBconnection.createConnection();
-			String query2 = "INSERT INTO user_profile(UID,FNAME,LNAME) values (NULL,?,?)"; 
+			String query2 = "INSERT INTO user_profile(FNAME,LNAME,EMAIL) values (?,?,?)"; 
 			ps2 = (PreparedStatement) con2.prepareStatement(query2); 
 			ps2.setString(1, fname);
 			ps2.setString(2, lname);
+			ps2.setString(3, email);
 			int i2= ps2.executeUpdate();
 			if(i2!=0)
 				return "SUCCESS"; 
@@ -268,7 +270,7 @@ public class AuthDAO {
 			dbusername = rs.getString("UNAME");
 			dbpassword = rs.getString("PASS");
 			dbrole = rs.getString("ROLE");
-			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword) && role.equalsIgnoreCase(dbrole)) {
+			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword)) {
 				return dbrole;
 			}
 		}
@@ -299,6 +301,8 @@ public class AuthDAO {
 		String dbrole = "";
 		String dbfname = "";
 		String dblname = "";
+		String dbemail = "";
+		String dbaddress = "";
 		int dbuserId = 0;
 		
 		try
@@ -327,14 +331,18 @@ public class AuthDAO {
 		while(rs1.next()) {
 			dbfname = rs1.getString("FNAME");
 			dblname = rs1.getString("LNAME");
+			dbemail = rs1.getString("EMAIL");
+			dbaddress = rs1.getString("ADDRESS");
 			}
 		
-		user.setUserFirstName(dbfname);	
-		user.setUserLastName(dblname);
+		user.setFirstName(dbfname);	
+		user.setLastName(dblname);
 		user.setUserName(dbusername);
 		user.setPassword(dbpassword);
 		user.setRole(dbrole);
 		user.setUserId(dbuserId);
+		user.setEmail(dbemail);
+		user.setAddress(dbaddress);
 		
 		}
 		

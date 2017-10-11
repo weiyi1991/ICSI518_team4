@@ -5,15 +5,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Create Product</title>
+
+<script>
+function validate() {
+    var name = document.forms["form"]["name"].value;
+    var desp = document.forms["form"]["description"].value;
+    var price = document.forms["form"]["price"].value;
+    
+    if (name == "" && desp == "" && price == "") {
+        alert("Please enter product information.");
+        return false;
+    } 
+    else if (name == "") {
+        alert("Please enter product name.");
+        return false;
+    } 
+    else if (desp == "") {
+        alert("Please enter product description.");
+        return false;
+    }
+    else if (price == "") {
+        alert("Please enter product price.");
+        return false;
+    }
+}
+</script>
+
 </head>
 <body>
 
-	<jsp:include page="_header.jsp"></jsp:include>
+	<jsp:include page="_navLogin.jsp"></jsp:include>
 
 	<!-- If not login, can't sell -->
 	<% 
     if(session.getAttribute("user")==null){
-    //	response.sendRedirect("login.jsp");    	
+    	response.sendRedirect("login.jsp");    	
     }
     
 	%>
@@ -25,7 +51,7 @@
        
       <p style="color: red;">${errorString}</p>
        
-      <form method="POST" action="createProduct">
+      <form name="form" method="POST" action="createProduct" onsubmit="return validate()">
          <table border="0">
             <tr>
                <td>Name</td>
