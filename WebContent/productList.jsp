@@ -20,11 +20,17 @@ th, td {
 <body>
 
 	<% 
-    if(request.getAttribute("productList")==null)
+    //if(request.getAttribute("productList")==null)
     	//response.sendRedirect("login.jsp");
 	%>
-
-	<jsp:include page="_nav.jsp"></jsp:include>
+	
+	<% 
+    if(session.getAttribute("user")==null){%>
+    	<jsp:include page="_nav.jsp"></jsp:include>    	
+    <%}else{%>
+    	<jsp:include page="_navLogin.jsp"></jsp:include>
+    <%} %>
+  
 
 	<!-- product lists -->
 	

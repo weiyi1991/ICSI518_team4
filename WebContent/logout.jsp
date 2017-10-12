@@ -9,18 +9,18 @@
 <body>
 
 	<%
+	/*
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-    response.setDateHeader("Expires", 0); // Proxies.
+    response.setDateHeader("Expires", 0); // Proxies.*/
     
-    if(session.getAttribute("user")==null){
-    	//response.sendRedirect("login.jsp");    	
+    if(session.getAttribute("user")!=null){
+    	session.invalidate();    	
     }
 	%>
 
 <p>You have been successfully logout</p>
 
-<% System.out.println("logout session:" +session.getAttribute("user")); %>
 
 <br>
 <input type="button" onclick="location.href='login.jsp';" value="Login" />
