@@ -111,3 +111,10 @@ ul.list	 li{
 	right: 10px;
 	bottom: 10px;
 }
+
+table, th, td {
+	border: 1px solid black;
+	cellpadding: 50;
+	cellspacing: 50;
+}
+
