@@ -38,6 +38,7 @@ public class createProduct extends HttpServlet {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		String productprice = request.getParameter("price");
+		String category = request.getParameter("category");
 		int price = 0;
 		
 		String sellername = (String) session.getAttribute("username");
@@ -50,6 +51,7 @@ public class createProduct extends HttpServlet {
 		product.setName(name);
 		product.setDescription(description);
 		product.setPrice(price);
+		product.setCategory(category);
 		
 		
 		AuthDAO create = new AuthDAO();

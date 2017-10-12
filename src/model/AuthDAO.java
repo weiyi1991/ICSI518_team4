@@ -41,6 +41,9 @@ public class AuthDAO {
 		String dbrole = "";
 		String dbfname = "";
 		String dblname = "";
+		String dbemail = "";
+		String dbphone = "";
+		String dbaddress = "";
 				
 		try
 		{
@@ -66,7 +69,10 @@ public class AuthDAO {
 		while(rs1.next()) {
 			dbfname = rs1.getString("FNAME");
 			dblname = rs1.getString("LNAME");
-			}
+			dbemail = rs1.getString("EMAIL");
+			dbphone = rs1.getString("Phone");
+			dbaddress = rs1.getString("ADDRESS");
+		}
 		
 		user.setFirstName(dbfname);	
 		user.setLastName(dblname);
@@ -74,6 +80,9 @@ public class AuthDAO {
 		user.setPassword(dbpassword);
 		user.setRole(dbrole);
 		user.setUserId(userId);
+		user.setAddress(dbaddress);
+		user.setEmail(dbemail);
+		user.setPhoneNumber(dbphone);
 		
 		}
 		
@@ -202,20 +211,20 @@ public class AuthDAO {
 	
 	public String registerUser(User user)
 	{
-	String username = user.getUserName();
-	String password = user.getPassword();
-	String role = user.getRole();
-	String fname = user.getFirstName();
-	String lname = user.getLastName();
-	String email = user.getEmail();
+		String username = user.getUserName();
+		String password = user.getPassword();
+		String role = user.getRole();
+		String fname = user.getFirstName();
+		String lname = user.getLastName();
+		String email = user.getEmail();
+		
+		Connection con1 = null;
+		Connection con2 = null;
+		PreparedStatement ps1 = null;
+		PreparedStatement ps2 = null;
 	
-	Connection con1 = null;
-	Connection con2 = null;
-	PreparedStatement ps1 = null;
-	PreparedStatement ps2 = null;
-	
-	try
-	{
+		try
+		{
 		
 		boolean avai = checkUserNameAvailable(username);
 		//System.out.println("avai" + avai);
@@ -224,20 +233,26 @@ public class AuthDAO {
 			return "Username already exists.";
 		
 		con1 = DBconnection.createConnection();
-		String query1 = "INSERT INTO user(UID,UNAME,PASS,ROLE) values (NULL,?,?,?)"; 
-		ps1 = (PreparedStatement) con1.prepareStatement(query1); 
+		String query1 = "INSERT INTO user(UNAME,PASS,ROLE) values (?,?,?)"; 
+		//ps1 = (PreparedStatement) con1.prepareStatement(query1);
+		ps1 = (PreparedStatement) con1.prepareStatement(query1, PreparedStatement.RETURN_GENERATED_KEYS); 
 		ps1.setString(1, username);
 		ps1.setString(2, password);
 		ps1.setString(3, role);
+		
 		int i1= ps1.executeUpdate();
+		ResultSet rs = ps1.getGeneratedKeys();
+		rs.next();
 	
 		if (i1!=0) {
 			con2 = DBconnection.createConnection();
-			String query2 = "INSERT INTO user_profile(FNAME,LNAME,EMAIL) values (?,?,?)"; 
+			String query2 = "INSERT INTO user_profile(UID,FNAME,LNAME,EMAIL) values (?,?,?,?)"; 
 			ps2 = (PreparedStatement) con2.prepareStatement(query2); 
-			ps2.setString(1, fname);
-			ps2.setString(2, lname);
-			ps2.setString(3, email);
+			ps2.setInt(1, (int) rs.getLong(1));
+			ps2.setString(2, fname);
+			ps2.setString(3, lname);
+			ps2.setString(4, email);
+			System.out.println(query2);
 			int i2= ps2.executeUpdate();
 			if(i2!=0)
 				return "SUCCESS"; 
@@ -249,7 +264,46 @@ public class AuthDAO {
 	}
 	return "Failure.";  
 	}
-
+	
+	// update user_prorfile for profile.jsp
+	public String updateProfile(User user)
+	{
+		String username = user.getUserName();
+		String password = user.getPassword();
+		String fname = user.getFirstName();
+		String lname = user.getLastName();
+		String email = user.getEmail();
+		String phone = user.getPhoneNumber();
+		String address = user.getAddress();
+		
+		Connection con1 = null;
+		PreparedStatement ps1 = null;
+		
+		try
+		{
+			con1 = DBconnection.createConnection();
+			String query1 = "UPDATE user_profile set FNAME=?, LNAME=?, Phone=?, ADDRESS=? where UID=(SELECT UID FROM USER WHERE UNAME=?)"; 
+			//ps1 = (PreparedStatement) con1.prepareStatement(query1);
+			ps1 = (PreparedStatement) con1.prepareStatement(query1); 
+			ps1.setString(1, fname);
+			ps1.setString(2, lname);
+			ps1.setString(3, phone);
+			ps1.setString(4, address);
+			ps1.setString(5, username);
+			
+			int i1= ps1.executeUpdate();
+		
+			if (i1!=0) {
+				return "SUCCESS"; 
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+			return "Failure";  
+		}
+	
 	public String authenticateUser(User user)
 	{
 	String username = user.getUserName(); 
@@ -306,6 +360,7 @@ public class AuthDAO {
 		String dbfname = "";
 		String dblname = "";
 		String dbemail = "";
+		String dbphone = "";
 		String dbaddress = "";
 		int dbuserId = 0;
 		
@@ -337,6 +392,7 @@ public class AuthDAO {
 			dblname = rs1.getString("LNAME");
 			dbemail = rs1.getString("EMAIL");
 			dbaddress = rs1.getString("ADDRESS");
+			dbphone = rs1.getString("Phone");
 			}
 		
 		user.setFirstName(dbfname);	
@@ -347,6 +403,7 @@ public class AuthDAO {
 		user.setUserId(dbuserId);
 		user.setEmail(dbemail);
 		user.setAddress(dbaddress);
+		user.setPhoneNumber(dbphone);
 		
 		}
 		

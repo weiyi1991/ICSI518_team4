@@ -50,8 +50,8 @@ function validate() {
   <center><h2>Create Product</h2></center>
   <br>
    <p style="color: red;">${errorString}</p>
-  <form class="form-horizontal" action="createProduct" method="Post">
-       
+  <form class="form-horizontal" action="createProduct" method="Post" onsubmit="return validate()">
+       <!-- 
       <p style="color: red;">${errorString}</p>
        
       <form name="form" method="POST" action="createProduct" onsubmit="return validate()">
@@ -76,17 +76,17 @@ function validate() {
             </tr>
          </table>
       </form>
-	<!--  
+	-->
     <div class="form-group">
       <label class="control-label col-sm-2" >Product Name:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="pname" placeholder="" name="pname">
+        <input type="text" class="form-control" id="pname" placeholder="" name="name">
       </div>
     </div>
   	<div class="form-group">
       <label class="control-label col-sm-2" >Description:</label>
       <div class="col-sm-8">
-        <textarea class="form-control" id="desp" rows="3" name="desp"></textarea>
+        <textarea class="form-control" id="desp" rows="3" name="description"></textarea>
       </div>
     </div>
     <div class="form-group">
@@ -101,7 +101,7 @@ function validate() {
         <select class="form-control" name="category">
 	      		<option>Electronics</option>
 	      		<option>Fine Arts</option>
-	      		<option>Furnitures</option>
+	      		<option>Furniture</option>
 	      		<option>Books</option>
 	      		<option>Cars</option>
     	</select>
@@ -119,7 +119,7 @@ function validate() {
       </div>
     </div>
     
-  </form>-->
+  </form>
 
 </body>
 </html>

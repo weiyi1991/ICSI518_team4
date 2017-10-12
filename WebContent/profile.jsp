@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="model.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +8,14 @@
 </head>
 <body>
 
-<jsp:include page="_nav.jsp"></jsp:include>
+<jsp:include page="_navLogin.jsp"></jsp:include>
+
+<%
+	User user = (User) session.getAttribute("user");
+	if(user == null){
+		response.setHeader("refresh", "0; URL = login.jsp"); 
+	}
+%>
 
 <div class="container">
   <center><h2>Update Profile</h2></center>
@@ -17,43 +24,43 @@
   	<div class="form-group">
       <label class="control-label col-sm-2" >User Name:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="uname" placeholder="" name="uname" disabled>
+        <input type="text" class="form-control" id="uname" value="<%=user.getUserName() %>" name="uname" readonly>
       </div>
     </div>
   	<div class="form-group">
       <label class="control-label col-sm-2" >First Name:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="fname" placeholder="" name="fname">
+        <input type="text" class="form-control" id="fname" value="<%= user.getFirstName() %>" name="fname">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" >Last Name:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="lname" placeholder="" name="lname">
+        <input type="text" class="form-control" id="lname" value="<%= user.getLastName() %>" name="lname">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" >Role:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="role" placeholder="" name="role" disabled>
+        <input type="text" class="form-control" id="role" value="<%= user.getRole() %>" name="role" readonly>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-8">
-        <input type="email" class="form-control" id="email" placeholder="" name="email" disabled>
+        <input type="email" class="form-control" id="email" value="<%= user.getEmail() %>" name="email" readonly>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" >Phone Number:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="phone" placeholder="" name="phone">
+        <input type="text" class="form-control" id="phone" value="<%= user.getPhoneNumber() %>" name="phone">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" >Address:</label>
       <div class="col-sm-8">          
-        <select class="form-control" name="role">
+        <select class="form-control" name="address">
 	      		<option>Albany</option>
 	      		<option>Schenectady</option>
 	      		<option>Troy</option>
@@ -72,6 +79,13 @@
       <div class="col-sm-offset-2 col-sm-8">
         <button type="submit" class="btn btn-default">Update</button>
       </div>
+    </div>
+    
+    <div class="form-row">
+    	<label>
+       		<span><%=(request.getAttribute("errMessage") == null) ? ""
+					: request.getAttribute("errMessage")%></span>
+         </label>
     </div>
   </form>
 </div> 

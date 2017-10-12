@@ -46,7 +46,7 @@ public class signup extends HttpServlet {
 		String userRegistered = signup.registerUser(signupUser);
 		if(userRegistered.equals("SUCCESS"))   
 		{
-		request.getRequestDispatcher("/nav.jsp").forward(request, response);
+		request.getRequestDispatcher("/homeLogin.jsp").forward(request, response);
 		}
 		else  
 		{
