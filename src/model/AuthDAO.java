@@ -328,6 +328,10 @@ public class AuthDAO {
 			dbpassword = rs.getString("PASS");
 			dbrole = rs.getString("ROLE");
 			System.out.println("result: " + dbusername + dbpassword + dbrole);
+			
+			//check for correct username && wrong password
+			
+			
 			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword)) {
 				return dbrole;
 			}
@@ -464,6 +468,7 @@ public class AuthDAO {
 		while(rs.next()) {
             String name = rs.getString("PNAME");
             String desp = rs.getString("DESP");
+            String cat = rs.getString("CATEGORY");
             int price = rs.getInt("PRICE");
             int sellerID = rs.getInt("UID");
             
@@ -471,6 +476,7 @@ public class AuthDAO {
 
             product.setName(name);
             product.setDescription(desp);
+            product.setCategory(cat);
             product.setPrice(price);
             product.setSellerID(sellerID);
             
@@ -486,6 +492,50 @@ public class AuthDAO {
     	
     	return list;
     }
+    
+    public List<Product> searchProduct(String category){
+    	Connection con = null;
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+    	List<Product> list = new ArrayList<Product>();
+    	
+    	try
+		{
+		con = DBconnection.createConnection();
+		String query = "SELECT * FROM product WHERE CATEGORY=?"; 
+		ps = (PreparedStatement) con.prepareStatement(query);
+		ps.setString(1, category);
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+            String name = rs.getString("PNAME");
+            String desp = rs.getString("DESP");
+            String cat = rs.getString("CATEGORY");
+            int price = rs.getInt("PRICE");
+            int sellerID = rs.getInt("UID");
+            
+            Product product = new Product();
+
+            product.setName(name);
+            product.setDescription(desp);
+            product.setCategory(cat);
+            product.setPrice(price);
+            product.setSellerID(sellerID);
+            
+            
+            list.add(product);
+			}
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+    	
+    	return list;
+    }
+    
 }
 
 

@@ -8,10 +8,22 @@
   <div style="float: right; padding: 10px; text-align: right;">
  
     
-   <!-- Hello <b>${loginedUser.userName}</b>  -->  
+   <!-- Hello <b>${loginedUser.userName}</b>  Search <input name="search">  -->  
    
    <br/>
-     Search <input name="search">
+     
+     <div class="form-group">
+      <label class="control-label col-sm-2" >Search:</label>
+      <div class="col-sm-8">          
+        <select class="form-control" name="category">
+	      		<option>Electronics</option>
+	      		<option>Fine Arts</option>
+	      		<option>Furniture</option>
+	      		<option>Books</option>
+	      		<option>Cars</option>
+    	</select>
+    	</div>
+    </div>
  
   </div>
  

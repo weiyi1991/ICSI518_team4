@@ -8,7 +8,7 @@
 </head>
 <body>
      <jsp:include page="_navLogin.jsp"></jsp:include>
-       
+        
       <ul>
         <li>		
         	<form action="productList" method="post">
@@ -18,6 +18,11 @@
         <li>
          	<form action="createProduct.jsp">
    			 	<input type="submit" value="Create Product" />
+			</form>
+		</li>
+		<li>
+         	<form action="searchProduct.jsp">
+   			 	<input type="submit" value="Search Product" />
 			</form>
 		</li>
      </ul>

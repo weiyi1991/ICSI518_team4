@@ -20,6 +20,11 @@
    			 	<input type="submit" value="Create Product" />
 			</form>
 		</li>
+		<li>
+         	<form action="searchProduct.jsp">
+   			 	<input type="submit" value="Search Product" />
+			</form>
+		</li>
      </ul>
 </body>
 </html>

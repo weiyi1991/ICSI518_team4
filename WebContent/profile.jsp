@@ -10,7 +10,12 @@
 
 <jsp:include page="_navLogin.jsp"></jsp:include>
 
-<%
+<%	
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+response.setDateHeader("Expires", 0); // Proxies.
+	
+
 	User user = (User) session.getAttribute("user");
 	if(user == null){
 		response.setHeader("refresh", "0; URL = login.jsp"); 
