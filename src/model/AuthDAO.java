@@ -469,6 +469,7 @@ public class AuthDAO {
             String name = rs.getString("PNAME");
             String desp = rs.getString("DESP");
             String cat = rs.getString("CATEGORY");
+            int productID = rs.getInt("PID");
             int price = rs.getInt("PRICE");
             int sellerID = rs.getInt("UID");
             
@@ -479,6 +480,7 @@ public class AuthDAO {
             product.setCategory(cat);
             product.setPrice(price);
             product.setSellerID(sellerID);
+            product.setProductId(productID);
             
             
             list.add(product);
@@ -534,6 +536,74 @@ public class AuthDAO {
 		}
     	
     	return list;
+    }
+    
+    public List<Product> myList(int userID){
+    	Connection con = null;
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+    	List<Product> list = new ArrayList<Product>();
+    	
+    	try
+		{
+		con = DBconnection.createConnection();
+		String query = "SELECT * FROM product WHERE UID=?"; 
+		ps = (PreparedStatement) con.prepareStatement(query);
+		ps.setInt(1, userID);
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+            String name = rs.getString("PNAME");
+            String desp = rs.getString("DESP");
+            String cat = rs.getString("CATEGORY");
+            int price = rs.getInt("PRICE");
+            int sellerID = rs.getInt("UID");
+            int productID = rs.getInt("PID");
+            
+            
+                        
+            Product product = new Product();
+
+            product.setName(name);
+            product.setDescription(desp);
+            product.setCategory(cat);
+            product.setPrice(price);
+            product.setSellerID(sellerID);
+            product.setProductId(productID);
+            
+            list.add(product);
+			}
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+    	
+    	return list;
+    }
+    
+    public void deleteProduct(int productID) {
+    	
+    	Connection con = null;
+    	PreparedStatement ps = null;
+        
+        try {
+        	con = DBconnection.createConnection();
+        	
+        	String query = "DELETE FROM product where PID= ?";
+        	
+			ps = (PreparedStatement) con.prepareStatement(query);
+			 
+	        ps.setInt(1, productID);
+	 
+	        ps.executeUpdate();
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
     }
     
 }

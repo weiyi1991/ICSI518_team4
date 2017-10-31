@@ -68,30 +68,38 @@ public class login extends HttpServlet {
 					System.out.println("log in session:" + session.getAttribute("user"));
 						
 					session.setAttribute("username", username);
-					//session.setAttribute("role", role);
+					session.setAttribute("role", role);
 					session.setAttribute("firstname", login_user.getFirstName());
 					session.setAttribute("lastname", login_user.getLastName());
 					session.setAttribute("address", login_user.getAddress());
-					
+					session.setAttribute("userId", login_user.getUserId());
 					
 					request.setAttribute("username", username);
 					//request.setAttribute("role", role);
 					request.setAttribute("firstname", login_user.getFirstName());
 					request.setAttribute("lastname", login_user.getLastName());
+					request.setAttribute("userId", login_user.getUserId());
 					
 					request.getRequestDispatcher("homeLogin.jsp").forward(request, response);
 				}	
 				
 				else if(userValidate.equalsIgnoreCase("Admin")){
 					HttpSession session = request.getSession(); //Creating a session
-					//session.setAttribute("role", role); 
+					
+					session.setAttribute("user", login_user);
+					session.setAttribute("username", username);
+					session.setAttribute("role", role);
+					session.setAttribute("firstname", login_user.getFirstName());
+					session.setAttribute("lastname", login_user.getLastName());
+					session.setAttribute("address", login_user.getAddress());
+					session.setAttribute("userId", login_user.getUserId());
 					
 					request.setAttribute("username", username);
-					//request.setAttribute("role", role);
+					request.setAttribute("role", role);
 					request.setAttribute("firstname", login_user.getFirstName());
 					request.setAttribute("lastname", login_user.getLastName());
 					
-					request.getRequestDispatcher("homeLogin.jsp").forward(request, response);
+					request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
 				}	
 				
 

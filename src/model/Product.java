@@ -29,7 +29,7 @@ public class Product {
 	       this.description = description;
 	   }
 	 
-	   public int getProdcutId() {
+	   public int getProductId() {
 	       return productId;
 	   }
 	   	   

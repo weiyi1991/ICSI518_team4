@@ -15,6 +15,13 @@
   		 		<input type="submit" value="Product List" />
        	 	</form>
        	</li>
+       	
+       	<li>		
+        	<form action="myList" method="post">
+  		 		<input type="submit" value="My Product List" />
+       	 	</form>
+       	</li>
+       	
         <li>
          	<form action="createProduct.jsp">
    			 	<input type="submit" value="Create Product" />
