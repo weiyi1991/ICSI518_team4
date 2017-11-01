@@ -11,7 +11,7 @@
       <a class="navbar-brand" href="#">E-Commerce</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="homeLogin.jsp">Home</a></li>
+      <li class="active"><a href="adminLogin.jsp">Home</a></li>
       <li><a href="profile.jsp">Profile</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

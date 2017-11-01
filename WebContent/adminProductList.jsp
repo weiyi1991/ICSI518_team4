@@ -28,7 +28,7 @@ th, td {
     if(session.getAttribute("user")==null){%>
     	<jsp:include page="_nav.jsp"></jsp:include>    	
     <%}else{%>
-    	<jsp:include page="_navLogin.jsp"></jsp:include>
+    	<jsp:include page="_navLoginAdmin.jsp"></jsp:include>
     <%} %>
   
 
