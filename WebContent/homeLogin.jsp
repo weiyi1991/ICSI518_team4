@@ -32,6 +32,11 @@
    			 	<input type="submit" value="Search Product" />
 			</form>
 		</li>
+		<li>
+         	<form action="viewComments" method="post">
+   			 	<input type="submit" value="View my comments" />
+			</form>
+		</li>
      </ul>
 </body>
 </html>

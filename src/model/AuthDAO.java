@@ -606,6 +606,59 @@ public class AuthDAO {
 
     }
     
+    public List<Comments> myComments(int userID){
+    	Connection con = null;
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+    	List<Comments> list = new ArrayList<Comments>();
+    	
+    	try
+		{
+		con = DBconnection.createConnection();
+		String query = "SELECT * FROM COMMENTS WHERE SID=?"; 
+		ps = (PreparedStatement) con.prepareStatement(query);
+		ps.setInt(1, userID);
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+            int commentID = rs.getInt("CID");
+            int UID = rs.getInt("UID");
+            int productID = rs.getInt("PID");
+            int sellerID = rs.getInt("SID");
+            
+            float rates = rs.getFloat("RATES");
+            String comments = rs.getString("COMM");
+            String buyerName = rs.getString("COMM");
+            String productName = rs.getString("COMM");
+            
+            
+            
+                        
+            Comments comm = new Comments();
+            comm.setCommentID(commentID);
+            comm.setUserID(UID);
+            comm.setProductID(productID);
+            comm.setSellerID(sellerID);
+            comm.setBuyerName(buyerName);
+            comm.setProductName(productName);
+            comm.setRates(rates);
+            comm.setComments(comments);
+
+
+            
+            list.add(comm);
+		}
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+    	
+    	return list;
+    }
+    
 }
 
 
