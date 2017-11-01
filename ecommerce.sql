@@ -32,5 +32,18 @@ PRIMARY KEY (PID),
 foreign key (UID) references USER(UID)
 ); 
 
+CREATE TABLE COMMENTS
+(
+CID INT NOT NULL auto_increment,
+UID INT NOT NULL,
+PID INT NOT NULL,
+SID INT NOT NULL,  /*UID of the seller*/
+RATES float,
+COMM text,
+PRIMARY KEY (CID),
+foreign key (UID) references USER(UID),
+foreign key (SID) references USER(UID),
+foreign key (PID) references PRODUCT(PID)
+);
 INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('user1', '123', 'Customer');
 INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('admin', '123', 'Admin');
