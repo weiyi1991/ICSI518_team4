@@ -49,7 +49,7 @@ th, td {
           	<td>${product.name}</td>
             <td>${product.description}</td>
             <td>${product.price}</td>
-            <td><a href="deleteProduct?productID=${product.productId}">Delete</a></td>
+            <td><a href="deleteProduct?productID=${product.productId}" onclick="return confirm('Are you sure you want to delete')" >Delete</a></td>
           </tr>
       	 </c:forEach>
    		</table>

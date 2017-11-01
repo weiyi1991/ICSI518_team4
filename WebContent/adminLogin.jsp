@@ -7,7 +7,7 @@
 <title>Home page</title>
 </head>
 <body>
-     <jsp:include page="_navLogin.jsp"></jsp:include>
+     <jsp:include page="_navLoginAdmin.jsp"></jsp:include>
         
       <ul>
         <li>		
