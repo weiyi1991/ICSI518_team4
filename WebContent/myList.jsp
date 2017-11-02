@@ -37,7 +37,7 @@ th, td {
 	<h3>My Product List</h3>
  
    
-    <table style="width:80%" >
+    <table class="table table-bordered" >
        <tr>
  		  <th>Name</th>
           <th>Description</th>

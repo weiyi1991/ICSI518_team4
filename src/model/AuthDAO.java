@@ -538,6 +538,45 @@ public class AuthDAO {
     	return list;
     }
     
+    public Product searchProductByID(int productID){
+    	Connection con = null;
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		Product product = new Product();
+    	try
+		{
+		con = DBconnection.createConnection();
+		String query = "SELECT * FROM product WHERE PID=?"; 
+		ps = (PreparedStatement) con.prepareStatement(query);
+		ps.setInt(1, productID);
+		rs = ps.executeQuery();
+        
+		while(rs.next()) {
+            String name = rs.getString("PNAME");
+            String desp = rs.getString("DESP");
+            String cat = rs.getString("CATEGORY");
+            int price = rs.getInt("PRICE");
+            int sellerID = rs.getInt("UID");
+
+
+            product.setName(name);
+            product.setDescription(desp);
+            product.setCategory(cat);
+            product.setPrice(price);
+            product.setSellerID(sellerID);
+            product.setProductId(productID);
+            
+			}
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+    	
+		return product;
+    }
+    
     public List<Product> myList(int userID){
     	Connection con = null;
     	PreparedStatement ps = null;
@@ -606,6 +645,37 @@ public class AuthDAO {
 
     }
     
+    public String creatComments(Comments comments) {
+        
+    	Connection con = null;
+    	PreparedStatement ps;
+        
+		try {
+			
+			con = DBconnection.createConnection();
+	    	String query = "INSERT INTO COMMENTS(CID, UID, PID, SID, RATES, COMM) values (NULL,?,?,?,?,?)";
+			ps = (PreparedStatement) con.prepareStatement(query);
+			
+	        ps.setInt(1, comments.getUserID());
+	        ps.setInt(2, comments.getProductID());
+            ps.setInt(3, comments.getSellerID());
+	        ps.setFloat(4, comments.getRates());
+	        ps.setString(5, comments.getComments());
+	        
+	       	int i  = ps.executeUpdate();
+	       	
+	       	if(i!=0) {
+	       		return "SUCCESS";
+	       	}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+      
+        return "FAILURE";
+    }
+    
     public List<Comments> myComments(int userID){
     	Connection con = null;
     	PreparedStatement ps = null;
@@ -616,21 +686,22 @@ public class AuthDAO {
     	try
 		{
 		con = DBconnection.createConnection();
-		String query = "SELECT * FROM COMMENTS WHERE SID=?"; 
+		String query = "SELECT COMMENTS.CID, comments.UID, comments.PID, comments.SID, comments.rates, comments.comm, user_profile.FNAME, user_profile.LNAME, product.PNAME FROM COMMENTS, user_profile, product WHERE SID=? and comments.UID=user_profile.UID and comments.PID = product.PID;"; 
 		ps = (PreparedStatement) con.prepareStatement(query);
 		ps.setInt(1, userID);
 		rs = ps.executeQuery();
 		
 		while(rs.next()) {
-            int commentID = rs.getInt("CID");
-            int UID = rs.getInt("UID");
-            int productID = rs.getInt("PID");
-            int sellerID = rs.getInt("SID");
+            int commentID = rs.getInt("COMMENTS.CID");
+            int UID = rs.getInt("COMMENTS.UID");
+            int productID = rs.getInt("COMMENTS.PID");
+            int sellerID = rs.getInt("COMMENTS.SID");
             
-            float rates = rs.getFloat("RATES");
-            String comments = rs.getString("COMM");
-            String buyerName = rs.getString("COMM");
-            String productName = rs.getString("COMM");
+            float rates = rs.getFloat("COMMENTS.RATES");
+            String comments = rs.getString("COMMENTS.COMM");
+            String fname = rs.getString("user_profile.FNAME"); 
+            String lname = rs.getString("user_profile.LNAME");
+            String productName = rs.getString("product.PNAME");
             
             
             
@@ -640,7 +711,7 @@ public class AuthDAO {
             comm.setUserID(UID);
             comm.setProductID(productID);
             comm.setSellerID(sellerID);
-            comm.setBuyerName(buyerName);
+            comm.setBuyerName(fname + " " + lname);
             comm.setProductName(productName);
             comm.setRates(rates);
             comm.setComments(comments);
