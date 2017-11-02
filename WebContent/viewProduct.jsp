@@ -47,26 +47,26 @@ if(user == null){
   	<div class="form-group">
       <label class="control-label col-sm-2" >Seller Name:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="sname" value="<%= user.getFirstName()+ ' ' + user.getLastName() %>" name="sname" readonly>
+        <input type="text" class="form-control" id="sname" value="<%= seller.getFirstName()+ ' ' + seller.getLastName() %>" name="sname" readonly>
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-8">
-        <input type="email" class="form-control" id="email" value="<%= user.getEmail() %>" name="email" readonly>
+        <input type="email" class="form-control" id="email" value="<%= seller.getEmail() %>" name="email" readonly>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" >Phone Number:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="phone" value="<%= user.getPhoneNumber() %>" name="phone" readonly>
+        <input type="text" class="form-control" id="phone" value="<%= seller.getPhoneNumber() %>" name="phone" readonly>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" >Address:</label>
       <div class="col-sm-8">          
-        <input type="text" class="form-control" id="address" value="<%= user.getAddress() %>" name="address" readonly>
+        <input type="text" class="form-control" id="address" value="<%= seller.getAddress() %>" name="address" readonly>
     	</div>
     </div>
   
