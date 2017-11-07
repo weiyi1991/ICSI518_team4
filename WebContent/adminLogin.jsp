@@ -10,11 +10,20 @@
      <jsp:include page="_navLoginAdmin.jsp"></jsp:include>
         
       <ul>
+       
+        <li>		
+        	<form action="adminUserList" method="post">
+  		 		<input type="submit" value="User List" />
+       	 	</form>
+       	</li>
+      
         <li>		
         	<form action="adminProductList" method="post">
   		 		<input type="submit" value="Product List" />
        	 	</form>
        	</li>
+       	
+       	
      </ul>
 </body>
 </html>

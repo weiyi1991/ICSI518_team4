@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.AuthDAO;
-import model.Comments;
+import model.User;
 
 /**
- * Servlet implementation class viewComments
+ * Servlet implementation class adminUserList
  */
-@WebServlet("/viewComments")
-public class viewComments extends HttpServlet {
+@WebServlet("/adminUserList")
+public class adminUserList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewComments() {
+    public adminUserList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +32,21 @@ public class viewComments extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		List<Comments> list = null;
-		AuthDAO dao = new AuthDAO();
-		int id = (Integer) request.getSession(false).getAttribute("userId");
-		System.out.println("user id: " + id);
-		list = dao.myComments(id);
+		
+		 List<User> list = null;
+		 AuthDAO dao = new AuthDAO();
+		 list = dao.queryUser();
 		   
-	    request.setAttribute("commentsList", list);
+	     request.setAttribute("userList", list);
 	         
-	    request.getRequestDispatcher("viewComments.jsp").forward(request, response);
+	     request.getRequestDispatcher("adminUserList.jsp").forward(request, response);
 	}
 
 }

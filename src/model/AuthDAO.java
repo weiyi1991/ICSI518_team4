@@ -308,17 +308,18 @@ public class AuthDAO {
 	{
 	String username = user.getUserName(); 
 	String password = user.getPassword();
-	String role = user.getRole();
+	//String role = user.getRole();
 	Connection con = null;
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 	String dbusername = "";
 	String dbpassword = "";
 	String dbrole = "";
+	int dbstatus = 0;
 	try
 		{
 		con = DBconnection.createConnection();
-		String query = "SELECT UNAME,PASS,ROLE from user"; 
+		String query = "SELECT UNAME,PASS,ROLE,STATUS from user"; 
 		
 		ps = (PreparedStatement) con.prepareStatement(query);
 		rs = ps.executeQuery();
@@ -327,13 +328,17 @@ public class AuthDAO {
 			dbusername = rs.getString("UNAME");
 			dbpassword = rs.getString("PASS");
 			dbrole = rs.getString("ROLE");
+			dbstatus = rs.getInt("STATUS");
 			System.out.println("result: " + dbusername + dbpassword + dbrole);
 			
 			//check for correct username && wrong password
 			
 			
 			if(username.equalsIgnoreCase(dbusername) && password.equals(dbpassword)) {
-				return dbrole;
+				if(dbstatus == 0) 
+					return dbrole;
+				else
+					return "Your account has been blocked.";
 			}
 		}
 		}
@@ -367,6 +372,7 @@ public class AuthDAO {
 		String dbphone = "";
 		String dbaddress = "";
 		int dbuserId = 0;
+		int dbstatus = 0;
 		
 		try
 		{
@@ -382,6 +388,7 @@ public class AuthDAO {
 			dbpassword = rs.getString("PASS");
 			dbrole = rs.getString("ROLE");
 			dbuserId = rs.getInt("UID");
+			dbstatus = rs.getInt("STATUS");
 		}
 		
 		//System.out.println("id" + dbuserId);
@@ -408,6 +415,7 @@ public class AuthDAO {
 		user.setEmail(dbemail);
 		user.setAddress(dbaddress);
 		user.setPhoneNumber(dbphone);
+		user.setUserStatus(dbstatus);
 		
 		}
 		
@@ -658,6 +666,67 @@ public class AuthDAO {
     	
     	return list;
     }
+    
+    public List<User> queryUser(){
+    	Connection con = null;
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		int status = 0;
+		
+    	List<User> list = new ArrayList<User>();
+    	
+    	try
+		{
+		con = DBconnection.createConnection();
+		String query = "SELECT * FROM user WHERE role=? AND status=?"; 
+		ps = (PreparedStatement) con.prepareStatement(query);
+		ps.setString(1, "Customer");
+		ps.setInt(2, status);
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+            String username = rs.getString("UNAME");
+            
+            User user = new User();
+
+            user = getUserByUserName(username);
+            
+            list.add(user);
+			}
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+    	
+    	return list;
+    }
+    
+    public void blockUser(int userID) {
+    	
+    	Connection con = null;
+    	PreparedStatement ps = null;
+    	int block = 1;
+        
+        try {
+        	con = DBconnection.createConnection();
+        	
+        	String query = "UPDATE user SET status=? WHERE UID=?";
+        	
+			ps = (PreparedStatement) con.prepareStatement(query);
+			
+			ps.setInt(1, block); 
+	        ps.setInt(2, userID);
+	 
+	        ps.executeUpdate();
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+    }
+    
     
 }
 

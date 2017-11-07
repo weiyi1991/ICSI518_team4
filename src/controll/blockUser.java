@@ -1,8 +1,6 @@
 package controll;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.AuthDAO;
-import model.Comments;
 
 /**
- * Servlet implementation class viewComments
+ * Servlet implementation class blockUser
  */
-@WebServlet("/viewComments")
-public class viewComments extends HttpServlet {
+@WebServlet("/blockUser")
+public class blockUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewComments() {
+    public blockUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +28,13 @@ public class viewComments extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		 
+		String id = request.getParameter("userID");
+		int userID = Integer.parseInt(id);
+		AuthDAO dao = new AuthDAO();
+		dao.blockUser(userID);
+		 
+		 request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
 	}
 
 	/**
@@ -39,15 +42,7 @@ public class viewComments extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<Comments> list = null;
-		AuthDAO dao = new AuthDAO();
-		int id = (Integer) request.getSession(false).getAttribute("userId");
-		System.out.println("user id: " + id);
-		list = dao.myComments(id);
-		   
-	    request.setAttribute("commentsList", list);
-	         
-	    request.getRequestDispatcher("viewComments.jsp").forward(request, response);
+		doGet(request, response);
 	}
 
 }

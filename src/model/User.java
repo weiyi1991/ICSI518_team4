@@ -2,7 +2,7 @@ package model;
 
 public class User {
 	 
-       private String username;
+       private String userName;
 	   private String firstName;
 	   private String lastName;
 	   private String role;
@@ -11,16 +11,17 @@ public class User {
 	   private String email;
 	   private String phoneNumber;
 	   private String address;
+	   private int status;
 	 
 	   public User() {  
 	   }
 	    
 	   public String getUserName() {
-	       return username;
+	       return userName;
 	   }
 
-	   public void setUserName(String username) {
-		   this.username = username;
+	   public void setUserName(String userName) {
+		   this.userName = userName;
 	   }
 
 	   public String getFirstName() {
@@ -88,4 +89,13 @@ public class User {
 	       this.userId = userId;
 	   }
 	 
+	   public int getUserStatus() {
+	       return status;
+	   }
+	   
+	   public void setUserStatus(int status) {
+	       this.status = status;
+	   }
+	   
+	   
 	}
