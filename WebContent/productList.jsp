@@ -37,7 +37,7 @@ th, td {
 	<h3>Product List</h3>
  
    
-    <table style="width:80%" >
+    <table class="table table-bordered" >
        <tr>
 		  <th>Name</th>
           <th>Description</th>
@@ -49,7 +49,7 @@ th, td {
           	<td>${product.name}</td>
             <td>${product.description}</td>
             <td>${product.price}</td>
-            <td><a href=>Buy</a></td>
+            <td><a href="viewProduct?pid=<c:out value="${product.productId}"/>">Buy</a></td>
           </tr>
       	 </c:forEach>
    		</table>

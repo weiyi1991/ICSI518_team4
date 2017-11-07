@@ -21,7 +21,7 @@
 	<h3>My Comments List</h3>
  
    
-    <table style="width:80%" >
+    <table class="table table-bordered" >
        <tr>
 		  <th>Product name</th>
           <th>Buyer name</th>
