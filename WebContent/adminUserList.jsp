@@ -42,12 +42,14 @@ th, td {
  		  <th>User Name</th>
           <th>Email</th>
           <th></th>
+          <th></th>
        </tr>
        <c:forEach items="${userList}" var="user" >
           <tr>
           	<td>${user.userName}</td>
             <td>${user.email}</td>
             <td><a href="blockUser?userID=${user.userId}" onclick="return confirm('Are you sure you want to block user?')">Block</a></td>
+            <td><a href="verifyUser?userID=${user.userId}" onclick="return confirm('Are you sure you want to verify user?')">Verify</a></td>
           </tr>
       	 </c:forEach>
    		</table>

@@ -12,6 +12,7 @@ public class User {
 	   private String phoneNumber;
 	   private String address;
 	   private int status;
+	   private int verify;
 	 
 	   public User() {  
 	   }
@@ -97,5 +98,11 @@ public class User {
 	       this.status = status;
 	   }
 	   
+	   public int getUserVerify() {
+	       return verify;
+	   }
 	   
+	   public void setUserVerify(int verify) {
+	       this.verify = verify;
+	   }
 	}

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>View Product</title>
 </head>
 <body>
 <jsp:include page="_navLogin.jsp"></jsp:include>
@@ -69,6 +69,14 @@ if(user == null){
         <input type="text" class="form-control" id="address" value="<%= seller.getAddress() %>" name="address" readonly>
     	</div>
     </div>
+  
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Guaranteed:</label>
+      <div class="col-sm-8">          
+        <input type="text" class="form-control" id="verify" value="<%= seller.getUserVerify() %>" name="verify" readonly>
+    	</div>
+    </div>
+  
   
     <br><hr><br>
     <h3>Comments</h3><br>

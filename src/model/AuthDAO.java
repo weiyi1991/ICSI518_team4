@@ -742,7 +742,9 @@ public class AuthDAO {
     	Connection con = null;
     	PreparedStatement ps = null;
 		ResultSet rs = null;
+		String customer = "Customer";
 		int status = 0;
+		//int verify = 0;
 		
     	List<User> list = new ArrayList<User>();
     	
@@ -751,8 +753,9 @@ public class AuthDAO {
 		con = DBconnection.createConnection();
 		String query = "SELECT * FROM user WHERE role=? AND status=?"; 
 		ps = (PreparedStatement) con.prepareStatement(query);
-		ps.setString(1, "Customer");
+		ps.setString(1, customer);
 		ps.setInt(2, status);
+		//ps.setInt(3, verify);AND verify=?
 		rs = ps.executeQuery();
 		
 		while(rs.next()) {
@@ -788,6 +791,29 @@ public class AuthDAO {
 			ps = (PreparedStatement) con.prepareStatement(query);
 			
 			ps.setInt(1, block); 
+	        ps.setInt(2, userID);
+	 
+	        ps.executeUpdate();
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void verifyUser(int userID) {
+    	
+    	Connection con = null;
+    	PreparedStatement ps = null;
+    	int verify = 1;
+        
+        try {
+        	con = DBconnection.createConnection();
+        	
+        	String query = "UPDATE user SET verify=? WHERE UID=?";
+        	
+			ps = (PreparedStatement) con.prepareStatement(query);
+			
+			ps.setInt(1, verify); 
 	        ps.setInt(2, userID);
 	 
 	        ps.executeUpdate();
