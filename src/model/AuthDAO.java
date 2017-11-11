@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -684,6 +683,7 @@ public class AuthDAO {
         return "FAILURE";
     }
     
+    
     public List<Comments> myComments(int userID){
     	Connection con = null;
     	PreparedStatement ps = null;
@@ -824,6 +824,73 @@ public class AuthDAO {
 
     }
     
+    
+    public String creatFeedbacks(Feedback fb) {
+        
+    	Connection con = null;
+    	PreparedStatement ps;
+        
+		try {
+			
+			con = DBconnection.createConnection();
+	    	String query = "INSERT INTO FEEDBACKS(FID, UID, PID, SID, FEED) values (NULL,?,?,?,?)";
+			ps = (PreparedStatement) con.prepareStatement(query);
+			
+	        ps.setInt(1, fb.getUserID());
+	        ps.setInt(2, fb.getProductID());
+            ps.setInt(3, fb.getSellerID());
+	        ps.setString(4, fb.getFeedback());
+	        
+	       	int i  = ps.executeUpdate();
+	       	
+	       	if(i!=0) {
+	       		return "SUCCESS";
+	       	}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+      
+        return "FAILURE";
+    }
+    public List<Feedback> queryFeedback(){
+    	Connection con = null;
+    	PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		//int verify = 0;
+		
+    	List<Feedback> list = new ArrayList<Feedback>();
+    	
+    	try
+		{
+		con = DBconnection.createConnection();
+		String query = "SELECT * FROM feedbacks"; 
+		ps = (PreparedStatement) con.prepareStatement(query);
+
+		//ps.setInt(3, verify);AND verify=?
+		rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			System.out.println("-----");
+            Feedback fb = new Feedback();
+            fb.setFeedbackID(rs.getInt("FID"));
+            fb.setUserID(rs.getInt("UID"));
+            fb.setProductID(rs.getInt("PID"));
+            fb.setSellerID(rs.getInt("SID"));
+            fb.setFeedback(rs.getString("FEED"));
+            list.add(fb);
+			}
+		}
+		
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+    	
+    	return list;
+    }
     
 }
 

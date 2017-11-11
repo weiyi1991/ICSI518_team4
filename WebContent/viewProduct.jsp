@@ -104,6 +104,13 @@ if(user == null){
         <button type="submit" class="btn btn-default">Submit</button>
       </div>
     </div>
+    
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+    	<a href="creatFeedback?pid=<%= product.getProductId()%>">Give us a feedback?</a>
+    	</div>
+    </div>
+    
   </form>
 </div> 
 </body>

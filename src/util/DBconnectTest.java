@@ -10,7 +10,7 @@ public class DBconnectTest {
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		//conn = DBconnection.createConnection();
-		String url = "jdbc:mysql://localhost/ecommerce";
+		String url = "jdbc:mysql://localhost:3306/ecommerce";
 		String username = "root"; //MySQL username
 		String password = "root";
 		//String password = "tnat410"; //MySQL password

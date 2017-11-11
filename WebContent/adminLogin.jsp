@@ -22,6 +22,11 @@
   		 		<input type="submit" value="Product List" />
        	 	</form>
        	</li>
+       	<li>		
+        	<form action="feedbackList" method="post">
+  		 		<input type="submit" value="Feedback List" />
+       	 	</form>
+       	</li>
        	
        	
      </ul>

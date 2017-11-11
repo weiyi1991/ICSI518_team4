@@ -47,5 +47,18 @@ foreign key (UID) references USER(UID),
 foreign key (SID) references USER(UID),
 foreign key (PID) references PRODUCT(PID)
 );
+
+CREATE TABLE FEEDBACKS
+(
+FID INT NOT NULL auto_increment,
+UID INT NOT NULL,
+PID INT NOT NULL,
+SID INT NOT NULL,  /*UID of the seller*/
+FEED text,
+PRIMARY KEY (FID),
+foreign key (UID) references USER(UID),
+foreign key (SID) references USER(UID),
+foreign key (PID) references PRODUCT(PID)
+);
 INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('user1', '123', 'Customer');
 INSERT INTO `ecommerce`.`user` (`UNAME`, `PASS`, `ROLE`) VALUES ('admin', '123', 'Admin');
