@@ -372,6 +372,7 @@ public class AuthDAO {
 		String dbaddress = "";
 		int dbuserId = 0;
 		int dbstatus = 0;
+		int dbverify = 0;
 		
 		try
 		{
@@ -388,6 +389,7 @@ public class AuthDAO {
 			dbrole = rs.getString("ROLE");
 			dbuserId = rs.getInt("UID");
 			dbstatus = rs.getInt("STATUS");
+			dbverify = rs.getInt("VERIFY");
 		}
 		
 		//System.out.println("id" + dbuserId);
@@ -415,7 +417,7 @@ public class AuthDAO {
 		user.setAddress(dbaddress);
 		user.setPhoneNumber(dbphone);
 		user.setUserStatus(dbstatus);
-		
+		user.setUserVerify(dbverify);
 		}
 		
 		catch(SQLException e)
@@ -743,7 +745,7 @@ public class AuthDAO {
     	PreparedStatement ps = null;
 		ResultSet rs = null;
 		String customer = "Customer";
-		int status = 0;
+		//int status = 0;
 		//int verify = 0;
 		
     	List<User> list = new ArrayList<User>();
@@ -751,10 +753,10 @@ public class AuthDAO {
     	try
 		{
 		con = DBconnection.createConnection();
-		String query = "SELECT * FROM user WHERE role=? AND status=?"; 
+		String query = "SELECT * FROM user WHERE role=?"; 
 		ps = (PreparedStatement) con.prepareStatement(query);
 		ps.setString(1, customer);
-		ps.setInt(2, status);
+		//ps.setInt(2, status);AND status=?
 		//ps.setInt(3, verify);AND verify=?
 		rs = ps.executeQuery();
 		
@@ -799,6 +801,30 @@ public class AuthDAO {
 			e.printStackTrace();
 		}
     }
+    
+    public void unBlockUser(int userID) {
+    	
+    	Connection con = null;
+    	PreparedStatement ps = null;
+    	int unblock = 0;
+        
+        try {
+        	con = DBconnection.createConnection();
+        	
+        	String query = "UPDATE user SET status=? WHERE UID=?";
+        	
+			ps = (PreparedStatement) con.prepareStatement(query);
+			
+			ps.setInt(1, unblock); 
+	        ps.setInt(2, userID);
+	 
+	        ps.executeUpdate();
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
     
     public void verifyUser(int userID) {
     	

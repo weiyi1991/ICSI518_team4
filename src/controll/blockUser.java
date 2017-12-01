@@ -34,7 +34,7 @@ public class blockUser extends HttpServlet {
 		AuthDAO dao = new AuthDAO();
 		dao.blockUser(userID);
 		 
-		 request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
+		request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
 	}
 
 	/**
