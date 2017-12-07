@@ -73,13 +73,7 @@ response.setDateHeader("Expires", 0); // Proxies.
     	</select>
     	</div>
     </div>
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-8">
-        <div class="checkbox">
-          <label><input type="checkbox" name="remember"> Remember me</label>
-        </div>
-      </div>
-    </div>
+   
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-8">
         <button type="submit" class="btn btn-default">Update</button>
