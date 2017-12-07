@@ -5,7 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<nav class="navbar navbar-inverse fixed-top navbar-expand-lg bg-dark">
+<nav class="navbar navbar-default fixed-top bg-dark">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">E-Commerce</a>

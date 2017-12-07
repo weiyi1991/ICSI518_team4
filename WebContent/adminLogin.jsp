@@ -9,22 +9,22 @@
 <body>
      <jsp:include page="_navLoginAdmin.jsp"></jsp:include>
         
-      <ul>
+      <ul style="list-style: none;padding: 0.5%;">
        
         <li>		
         	<form action="adminUserList" method="post">
-  		 		<input type="submit" value="User List" />
+  		 		<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="User List" /><br>
        	 	</form>
        	</li>
       
         <li>		
         	<form action="adminProductList" method="post">
-  		 		<input type="submit" value="Product List" />
+  		 		<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="Product List" /><br>
        	 	</form>
        	</li>
        	<li>		
         	<form action="feedbackList" method="post">
-  		 		<input type="submit" value="Feedback List" />
+  		 		<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="Feedback List" /><br>
        	 	</form>
        	</li>
        	

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User List</title>
+<title>Product List</title>
 <link rel="stylesheet" href="form.css" type="text/css">
 <style>
 table, th, td {
@@ -41,30 +41,15 @@ th, td {
        <tr>
  		  <th>User Name</th>
           <th>Email</th>
-          <th>Block</th>
-          <th>Unblock</th>
-          <th>Verify</th>
+          <th></th>
+          <th></th>
        </tr>
        <c:forEach items="${userList}" var="user" >
           <tr>
           	<td>${user.userName}</td>
             <td>${user.email}</td>
-            
-            <td>
-            	<c:if test = "${user.userStatus=='0'}">
-            	<a href="blockUser?userID=${user.userId}" onclick="return confirm('Are you sure you want to block user?')"> Block</a>
-            	</c:if>
-            </td>
-            <td>
-            	<c:if test = "${user.userStatus=='1'}">
-            	<a href="unBlockUser?userID=${user.userId}" onclick="return confirm('Are you sure you want to unblock user?')">  Unblock</a>
-            	</c:if>
-            </td>
-            <td>
-            	<c:if test = "${user.userVerify=='0'}">
-            	<a href="verifyUser?userID=${user.userId}" onclick="return confirm('Are you sure you want to verify user?')">  Verify</a>
-            	</c:if>
-            </td>
+            <td><a href="blockUser?userID=${user.userId}" onclick="return confirm('Are you sure you want to block user?')">Block</a></td>
+            <td><a href="verifyUser?userID=${user.userId}" onclick="return confirm('Are you sure you want to verify user?')">Verify</a></td>
           </tr>
       	 </c:forEach>
    		</table>

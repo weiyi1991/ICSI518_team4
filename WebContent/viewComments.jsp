@@ -7,7 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View Comment</title>
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 
 	<% if(session.getAttribute("user")==null){%>
     	<jsp:include page="_nav.jsp"></jsp:include>    	

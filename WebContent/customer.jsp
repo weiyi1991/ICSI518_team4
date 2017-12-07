@@ -7,7 +7,9 @@
 <title>Welcome</title>
 <link rel="stylesheet" href="form.css" type="text/css">
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 	
 	<%
 	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.

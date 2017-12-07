@@ -6,18 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Product List</title>
-<link rel="stylesheet" href="form.css" type="text/css">
-<style>
-table, th, td {
-    border: 1px solid black;
-    padding: 0 50px 0 50px;
-}
-th, td {
-    padding: 15px;
-}
-</style>
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 
 	<% 
     //if(request.getAttribute("productList")==null)
@@ -34,7 +26,7 @@ th, td {
 
 	<!-- product lists -->
 	
-	<h3>Product List</h3>
+	<%-- <h3>Product List</h3>
  
    
     <table class="table table-bordered" >
@@ -52,6 +44,44 @@ th, td {
             <td><a href="viewProduct?pid=<c:out value="${product.productId}"/>">Buy</a></td>
           </tr>
       	 </c:forEach>
-   		</table>
+   		</table> --%>
+   		
+   		
+   <div class="container">
+  <Center><h3>Product List</h3></Center>
+            
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price ($)</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach items="${productList}" var="product" >
+          <tr>
+          	<td>${product.name}</td>
+            <td>${product.description}</td>
+            <td>${product.price}</td>
+            <td><a href="viewProduct?pid=<c:out value="${product.productId}"/>">Buy</a></td>
+          </tr>
+      	 </c:forEach>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+        <td>hii</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+        <td>hii</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
