@@ -4,52 +4,55 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Forget password</title>
 
-<title>Change Password</title>
+<script>
+function validate() {
+    var uname = document.forms["form"]["uname"].value;
+    var email = document.forms["form"]["email"].value;
+    if (uname == "" && email == "") {
+        alert("Please enter user name and E-mail.");
+        return false;
+    } 
+    else if (uname == "") {
+        alert("Please enter user name.");
+        return false;
+    } 
+    else if (email == "") {
+        alert("Please enter E-mail.");
+        return false;
+    }
+}
+</script>
 </head>
+<body>
 <body style="background-image: url('images/background.jpg');
   background-color: #f2f2f2;
   background-blend-mode: screen;">
 
-<jsp:include page="_navLogin.jsp"></jsp:include>
-
-<%	
-response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-response.setDateHeader("Expires", 0); // Proxies.
-	
-
-	User user = (User) session.getAttribute("user");
-	if(user == null){
-		response.setHeader("refresh", "0; URL = login.jsp"); 
-	}
-%>
+<jsp:include page="_nav.jsp"></jsp:include>
 
 <div class="container">
   
-  <form class="form-horizontal" action="resetPassword" method="Post">
+  <form name ="form" class="form-horizontal" action="forgetPass" method="Post" onsubmit="return validate()">
+  	<center><h5>Please enter your user name and the registration E-mail</h5></center>
+  	<br>
   	<div class="form-group">
       <label class="control-label col-sm-2" >User Name:</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="uname" value="<%=user.getUserName() %>" name="uname" readonly>
+        <input type="text" class="form-control" id="uname" name="uname">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email:</label>
       <div class="col-sm-8">
-        <input type="email" class="form-control" id="email" value="<%= user.getEmail() %>" name="email" readonly>
-      </div>
-    </div>
-  	<div class="form-group">
-      <label class="control-label col-sm-2" >New Password:</label>
-      <div class="col-sm-8">
-        <input type="text" class="form-control" id="fname" name="newPass">
+        <input type="email" class="form-control" id="email" name="email">
       </div>
     </div>
    
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" class="btn btn-primary center-block">Update</button>
+        <button type="submit" class="btn btn-primary center-block">Submit</button>
       </div>
     </div>
     

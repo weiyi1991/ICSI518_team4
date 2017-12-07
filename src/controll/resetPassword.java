@@ -8,21 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.SendEmailUsingGMailSMTP;
 import model.AuthDAO;
-import model.Product;
 import model.User;
+
 /**
- * Servlet implementation class deleteProduct
+ * Servlet implementation class resetPassword
  */
-@WebServlet("/deleteProduct")
-public class deleteProduct extends HttpServlet {
+@WebServlet("/resetPassword")
+public class resetPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public deleteProduct() {
+    public resetPassword() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +30,7 @@ public class deleteProduct extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		 String id = request.getParameter("productID");
-		 int productID = Integer.parseInt(id);
-		 AuthDAO dao = new AuthDAO();
-		 Product product = dao.searchProductByID(productID);
-		 User user = dao.getUserById(product.getSellerID());
-		 dao.deleteProduct(productID);
-		 
-		 String msg = "Hi user,\nYour product - " + product.getName() + " has been deleted. Please contact administrator if you have any questions.\n\nThe E-commerce team.";
-		 System.out.println(user.getEmail());
-		 SendEmailUsingGMailSMTP smtp = new SendEmailUsingGMailSMTP();
-		 smtp.sendEmail(user.getEmail(), "Your post has been deleted", msg);
-		 request.getRequestDispatcher("homeLogin.jsp").forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -51,7 +38,28 @@ public class deleteProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("update password...");
+		String uname = request.getParameter("uname");
+		String pass = request.getParameter("newPass");
+		
+		System.out.println("Information: " + uname + pass);
+		
+		AuthDAO auth = new AuthDAO();
+		
+		//boolean usersignup = signup.checkUserNameAvailable(uname);
+		
+		String update = auth.resetPass(uname, pass);
+		if(update.equals("SUCCESS"))   
+		{
+			// update User bean in session
+			//request.getSession().setAttribute("user", signupUser);
+			request.getRequestDispatcher("/homeLogin.jsp").forward(request, response);
+		}
+		else  
+		{
+		request.setAttribute("errMessage", update);
+		request.getRequestDispatcher("/resetPassword.jsp").forward(request, response);
+		}
 	}
 
 }

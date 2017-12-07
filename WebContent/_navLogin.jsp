@@ -12,8 +12,9 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="homeLogin.jsp">Home</a></li>
-      <li><a href="profile.jsp">Profile</a></li>
       <li><a href="createProduct.jsp">Post</a></li>
+      <li><a href="profile.jsp">Profile</a></li>
+      <li><a href="resetPassword.jsp">Password</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

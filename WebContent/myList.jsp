@@ -78,18 +78,7 @@ th, td {
             <td><a href="deleteProduct?productID=${product.productId}" onclick="return confirm('Are you sure you want to delete')" >Delete</a></td>
           </tr>
       	 </c:forEach>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>hii</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>hii</td>
-      </tr>
+
     </tbody>
   </table>
 </div>

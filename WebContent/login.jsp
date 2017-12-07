@@ -65,6 +65,9 @@ function validate() {
     <div class="form-row">
     	<button type="submit">Log In</button>
     </div>
+    <div class="form-row">
+    	<a href="forgetPass.jsp">Forget password?</a>
+    </div>
 
     <div class="form-row">
     	<label>

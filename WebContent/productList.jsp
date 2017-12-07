@@ -68,18 +68,6 @@
             <td><a href="viewProduct?pid=<c:out value="${product.productId}"/>">Buy</a></td>
           </tr>
       	 </c:forEach>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>hii</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>hii</td>
-      </tr>
     </tbody>
   </table>
 </div>

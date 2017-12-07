@@ -11,14 +11,14 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmailUsingGMailSMTP {
 	
-	int sendEmail(String to, String subject, String msg){
+	public int sendEmail(String to, String subject, String msg){
 		// Recipient's email ID needs to be mentioned.
 		//String to = "ywei2@albany.edu";//change accordingly
 
      	// Sender's email ID needs to be mentioned
-		String from = "sd.ve91@gmail.com";//change accordingly
-		final String username = "sd.ve91";//change accordingly
-		final String password = "199148ve";//change accordingly
+		String from = "***@gmail.com";//change accordingly
+		final String username = "***";//change accordingly
+		final String password = "***";//change accordingly
 
 		// Assuming you are sending email through relay.jangosmtp.net
 		String host = "smtp.gmail.com";
@@ -72,9 +72,9 @@ public class SendEmailUsingGMailSMTP {
 	      String to = "ywei2@albany.edu";//change accordingly
 
 	      // Sender's email ID needs to be mentioned
-	      String from = "sd.ve91@gmail.com";//change accordingly
-	      final String username = "sd.ve91";//change accordingly
-	      final String password = "199148ve";//change accordingly
+	      String from = "abc@gmail.com";//change accordingly
+	      final String username = "***";//change accordingly
+	      final String password = "***";//change accordingly
 
 	      // Assuming you are sending email through relay.jangosmtp.net
 	      String host = "smtp.gmail.com";

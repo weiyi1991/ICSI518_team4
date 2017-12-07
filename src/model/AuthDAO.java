@@ -22,7 +22,7 @@ public class AuthDAO {
 	//private int userId;
 	//private static User User;
 	   
-	public static User getUserById (int userId) {
+	public User getUserById (int userId) {
 		
 		Connection con = null;
 		Connection con1 = null;
@@ -153,6 +153,34 @@ public class AuthDAO {
 		}
 		
 		return true;
+	}
+	
+	public String resetPass (String username, String pass) {
+
+		Connection con = null;	
+		PreparedStatement ps = null;
+		
+		try	{		
+			
+			con = DBconnection.createConnection();
+			String query = "UPDATE USER SET PASS=? WHERE UNAME=?"; 
+			ps = (PreparedStatement) con.prepareStatement(query);
+
+			ps.setString(1, pass);
+			ps.setString(2, username);
+			int rs = ps.executeUpdate();
+		
+			if(rs!=0) {
+				return "SUCCESS";
+			}
+		
+		}
+		
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return "Fail";
+		
 	}
 	
 	public static boolean enterNewUser(String username, String password, String role) {
