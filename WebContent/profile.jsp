@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>User Profile</title>
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 
 <jsp:include page="_navLogin.jsp"></jsp:include>
 
@@ -23,7 +25,7 @@ response.setDateHeader("Expires", 0); // Proxies.
 %>
 
 <div class="container">
-  <center><h2>Update Profile</h2></center>
+  <center><img alt="profileUpdate" class="center-block" src="images/profileUpdate.png" style="width:8%; height: 8%"></center>
   <br>
   <form class="form-horizontal" action="profile_update" method="Post">
   	<div class="form-group">
@@ -82,7 +84,7 @@ response.setDateHeader("Expires", 0); // Proxies.
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" class="btn btn-default">Update</button>
+        <button type="submit" class="btn btn-primary center-block">Update</button>
       </div>
     </div>
     

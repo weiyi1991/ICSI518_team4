@@ -32,7 +32,9 @@ function validate() {
 </script>
 
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 
 	<jsp:include page="_navLogin.jsp"></jsp:include>
 
@@ -47,8 +49,8 @@ function validate() {
 	<!-- selling form -->
 	
 	<div class="container">
-  <center><h2>Create Product</h2></center>
-  <br>
+  <center><img alt="addProduct" class="center-block" src="images/addProduct.png" style="width:10%; height: 10%"><h3><b>Create Product</b></h3></center>
+  </div>
    <p style="color: red;">${errorString}</p>
   <form class="form-horizontal" action="createProduct" method="Post" onsubmit="return validate()">
        <!-- 
@@ -115,7 +117,7 @@ function validate() {
   	</div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-primary center-block">Create</button>
       </div>
     </div>
     

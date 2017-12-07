@@ -1,0 +1,6 @@
+
+*.class
+*.class
+*.prefs
+.classpath
+src/util/DBconnection.java

@@ -6,35 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home page</title>
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
      <jsp:include page="_navLogin.jsp"></jsp:include>
         
-      <ul>
+      <ul style="list-style: none;padding: 0.5%;">
         <li>		
         	<form action="productList" method="post">
-  		 		<input type="submit" value="Product List" />
+  		 		<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="Product List" /><br>
        	 	</form>
        	</li>
        	
        	<li>		
         	<form action="myList" method="post">
-  		 		<input type="submit" value="My Product List" />
+  		 		<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="My Product List" /><br>
        	 	</form>
        	</li>
        	
         <li>
          	<form action="createProduct.jsp">
-   			 	<input type="submit" value="Create Product" />
+   			 	<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="Create Product" /><br>
 			</form>
 		</li>
 		<li>
          	<form action="searchProduct.jsp">
-   			 	<input type="submit" value="Search Product" />
+   			 	<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="Search Product" /><br>
 			</form>
 		</li>
 		<li>
          	<form action="viewComments" method="post">
-   			 	<input type="submit" value="View my comments" />
+   			 	<input type="submit" class="btn btn-primary center-block" style="width: 25%" value="View my comments" /><br>
 			</form>
 		</li>
      </ul>

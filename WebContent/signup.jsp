@@ -42,7 +42,9 @@ function validate() {
 <link rel="stylesheet" href="form.css" type="text/css">
 
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 <jsp:include page="_nav.jsp"></jsp:include>
 <form class = "form" name = "form" action="signup" method="post" onsubmit="return validate()">
 

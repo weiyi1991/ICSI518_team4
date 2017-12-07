@@ -6,7 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View Product</title>
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 <jsp:include page="_navLogin.jsp"></jsp:include>
 <%
 User seller = (User)request.getAttribute("seller");

@@ -7,7 +7,9 @@
 <title>Create Product</title>
 
 </head>
-<body>
+<body style="background-image: url('images/background.jpg');
+  background-color: #f2f2f2;
+  background-blend-mode: screen;">
 
 	<jsp:include page="_navLogin.jsp"></jsp:include>
 
@@ -22,12 +24,15 @@
 	<!-- selling form  onsubmit="return validate()" -->
 	
   <div class="container">
-   <center><h2>Search Product</h2></center>
+   <center><img alt="searchProduct" class="center-block" src="images/searchProduct.jpg" style="width:60%; height: 20%"></center>
   </div>
-  
   <br>
+  <div class="container">
+  <center>
   
    <p style="color: red;">${errorString}</p>
+   
+   
   <form class="form-horizontal" action="searchProduct" method="Post" >
 
 	 <div class="form-group">
@@ -42,19 +47,20 @@
     	</select>
     	</div>
     </div>
-    <div class="form-group">
+    <div class="form-group ">
     	<label class="control-label col-sm-2" for="inputfile">Location:</label>
     	<div class="col-sm-8">
-    		<input type="text" id="location" name="location">
+    		<input type="text" class="form-control" id="location" name="location">
     	</div>
   	</div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-8">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-primary center-block">Submit</button>
       </div>
     </div>
     
   </form>
-
+  </center>
+	</div>
 </body>
 </html>
